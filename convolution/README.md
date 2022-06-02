@@ -3,17 +3,14 @@
 - Parameters stride, padding, dilation are also taken into account.
 - 1D, 2D, and 3D convolution are all included.
 
-# Docker
+# Guideline
 ```
-docker run --gpus all --privileged --rm -it -v $PWD:/work pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
-cd /work
+./init.sh		          -- Help Message
+./init.sh docker	    -- Run Docker
+./init.sh docker gpu	-- Run Docker with GPU Support
+./init.sh build		    -- Build Native Code Bind To Python
+./init.sh run		      -- Run Test Code
+./init.sh clean		    -- Clean Build Output
+./init.sh nvprof	    -- Profile With Nvprof
 ```
 
-# Compile and Run
-```
-## install python extension
-python setup.py install
-
-## execute test.py
-python run_test.py
-```
