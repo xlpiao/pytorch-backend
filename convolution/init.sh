@@ -1,7 +1,12 @@
 #!/bin/bash
 
 if [[ "$1" == "docker" ]]; then
-  docker run --gpus all --privileged --rm -it -v $PWD:/workspace pytorch/pytorch:1.11.0-cuda11.3-cudnn8-devel
+  if [[ "$(docker images -q xlpiao:pytorch 2> /dev/null)" == "" ]]; then
+    echo "building docker image ..."
+    docker build --tag xlpiao/pytorch -f Dockerfile .
+  fi
+  docker run --gpus all --privileged --rm -it -v $PWD:/root/workspace xlpiao/pytorch
+  # docker run --rm -it -v $PWD:/root/workspace xlpiao/pytorch
 elif [[ "$1" == "build" ]]; then
   python setup.py install
 elif [[ "$1" == "clean" ]]; then
