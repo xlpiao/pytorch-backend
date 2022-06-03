@@ -42,13 +42,13 @@ function main() {
     fi
   elif [[ "$ARG1" == "build" ]]; then
     python setup.py install
-  elif [[ "$ARG1" == "clean" ]]; then
-    python setup.py clean
-    rm -rf build dist *.egg*
   elif [[ "$ARG1" == "run" ]]; then
     python run_test.py
   elif [[ "$ARG1" == "profile" ]]; then
     nvprof  --metrics dram_utilization,warp_execution_efficiency,sm_efficiency,achieved_occupancy python run_test.py
+  elif [[ "$ARG1" == "clean" ]]; then
+    python setup.py clean
+    rm -rf build dist *.egg*
   else
     helpmsg
   fi
