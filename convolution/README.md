@@ -5,12 +5,12 @@
 
 # Guideline
 ```
-./init.sh		          -- Help Message
-./init.sh docker	    -- Run Docker
-./init.sh docker gpu	-- Run Docker with GPU Support
-./init.sh build		    -- Build Native Code Bind To Python
-./init.sh run		      -- Run Test Code
-./init.sh clean		    -- Clean Build Output
-./init.sh nvprof	    -- Profile With Nvprof
+./init.sh             -- Help Message
+./init.sh docker      -- Run Docker
+./init.sh docker gpu  -- Run Docker with GPU Support
+./init.sh build       -- Build Native Code Bind To Python
+./init.sh run         -- Run Test Code
+./init.sh clean       -- Clean Build Output
+./init.sh nvprof      -- Profile With Nvprof
 ```
 
