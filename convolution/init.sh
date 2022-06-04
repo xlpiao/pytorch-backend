@@ -27,18 +27,16 @@ function helpmsg() {
 
 function main() {
   if [[ "$ARG1" == "docker" ]]; then
+    local IMAGE_NAME="pytorch/pytorch-customized"
+    if [[ "$(docker images -q $IMAGE_NAME 2> /dev/null)" == "" ]]; then
+      echo "Building customized pytorch image ..."
+      docker build --tag $IMAGE_NAME -f Dockerfile .
+    fi
     if [[ "$ARG2" == "gpu" ]]; then
-      if [[ "$(docker images -q pytorch/pytorch-gpu 2> /dev/null)" == "" ]]; then
-        echo "building docker image with gpu support..."
-        docker build --tag pytorch/pytorch-gpu -f Dockerfile.gpu .
-      fi
-      docker run --gpus all --privileged --rm -it -v $PWD:/root/work pytorch/pytorch-gpu
+      docker run --gpus all --privileged \
+                 --rm -it -v $PWD:/root/workspace $IMAGE_NAME
     else
-      if [[ "$(docker images -q pytorch/pytorch-cpu 2> /dev/null)" == "" ]]; then
-        echo "building docker image with cpu-only..."
-        docker build --tag pytorch/pytorch-cpu -f Dockerfile .
-      fi
-      docker run --rm -it -v $PWD:/root/work pytorch/pytorch-cpu
+      docker run --rm -it -v $PWD:/root/workspace $IMAGE_NAME
     fi
   elif [[ "$ARG1" == "build" ]]; then
     python setup.py install

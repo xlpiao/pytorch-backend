@@ -15,3 +15,5 @@ RUN pip3 --no-cache-dir install \
         matplotlib \
         numpy \
         scipy
+
+WORKDIR /root/workspace
