@@ -1,2 +1,2 @@
-# pytorch-heterogeneous-backend
-Customized Convolutional Function That Uses Both CPU And GPU
+# pytorch-backend
+Customized Convolutional Function
